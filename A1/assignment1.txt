@@ -1,2 +1,71 @@
 Q1. .bash_profile is executed for login shells (such as SSH) whereas .bashrc is read when executed from an interactive shell (but not necesarily on startup, though you could setup your .bash_profile to read in your .bashrc if you wanted).
 
+Q2. See file vi_assignment.txt
+
+Q3. ls -l shows a long list of my files in my directory, the ownership, permissions, file size, file name and date of file modified.
+
+Q4. I have given myself read-write, and everyone else just read. 6 (4 + 2 read-write for owner) 4(read) 4 (read)
+
+Q5. I have given myself all permission (read/write/execute 4 + 2 + 1) everyone else has read and execute (4+1)
+
+Q6. Yes you can read the file since 6 gives you read and write permissions.
+
+Q7. Yes you can read the bash file since 6 gives you read and write permissions.
+
+Q8. I was not successful in executing since I only have read/write (4+2). If I had permissions 1, 5, or 7 I could have executed.
+
+Q9. As stated above, either 1xx, 5xx or 7xx would allow me to execute.
+
+Q10. I am unable to save the file since I only have read permissions.
+
+Q11.    ls *  --- > Lists all files
+        ls a* --- > Lists all files that start with the letter a
+        ls *m* --- > Lists all files with a letter m somewhere within the name of the file but not the first or last character.
+        ls anno? --- > Lists ally files that start with anno_ and end with a character. This lists annoy since the "y" can be matched
+        ls annoy? --- > this returns nothing since we dont have a file which has a character follow annoy_
+
+Q12. two files were created; a; space. 
+
+Q13. 
+
+        echo Is a < b?
+	-bash: b?: No such file or directory
+        echo "Is a < b?"
+	Is a < b?
+        echo "\$USER is $USER"
+	$USER is cdv28
+        echo '\$USER is $USER'
+	\$USER is $USER
+        echo "Today is `date`"
+	Today is Wed Jan 25 22:01:01 EST 2017
+        echo "Today is $(date)"
+	Today is Wed Jan 25 22:01:47 EST 2017
+        echo 'Today is `date`'
+	Today is `date`
+        echo -e "Files that start w/e:\n`ls e*`"
+	ls: cannot access 'e*': No such file or directory
+	Files that start w/e:
+
+ 
+
+Q14. sort without in flags sorts character by character. So since the first character of a line number "11" contains a 1, and the first character of a line "7" contains a 7, the 11 is listed first. Adding the -n flag forces the sort to sort numerically, identifying that 7 is less than 11, and sorting numerically.
+
+Q15. 
+sort -n -r itemList-2cols | head -8 
+
+95 candle
+89 guitar
+88 pillow
+88 computer
+82 knife
+69 phone
+61 plant
+54 glass
+
+Q16. the tar has now been compressed using gzip, and now a *.tar.gz file exists indicating the compressed tar file.
+
+Q17. The tar file was uncompressed, and thats why the assignment1.tar file now exists instead of indicating the gunzip compression extension
+
+Q18. find . | xargs grep Vacation
+
+Q19. find ~ | xargs grep assignment1
