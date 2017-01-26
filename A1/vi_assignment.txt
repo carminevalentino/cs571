@@ -425,7 +425,7 @@ NOTE: Remember that you should be learning by doing, not memorization.
 
   5. Repeat steps 3 and 4 until the first sentence is the same as the second.
 
----> This lubw has a few wptfd that mrrf changing usf the change operator.
+---> This line has a few words that need changing using the change operator.
 ---> This line has a few words that need changing using the change operator.
 
 Notice that  ce  deletes the word and places you in Insert mode.
@@ -450,7 +450,7 @@ Notice that  ce  deletes the word and places you in Insert mode.
 
   5. Type  c$  and type the rest of the line like the second and press <ESC>.
 
----> The end of this line needs some help to make it like the second.
+---> The end of this line needs to be corrected using the  c$  command.
 ---> The end of this line needs to be corrected using the  c$  command.
 
 NOTE:  You can use the Backspace key to correct mistakes while typing.
@@ -561,7 +561,7 @@ NOTE: This is very useful in debugging a program with unmatched parentheses!
   3. Now type  :s/thee/the/g .  Adding the  g  flag means to substitute
      globally in the line, change all occurrences of "thee" in the line.
 
----> thee best time to see thee flowers is in thee spring.
+---> the best time to see the flowers is in the spring.
 
   4. To change every occurrence of a character string between two lines,
      type   :#,#s/old/new/g    where #,# are the line numbers of the range
@@ -668,6 +668,19 @@ NOTE:  Pressing  v  starts Visual selection.  You can move the cursor around
 
        ** To insert the contents of a file, type  :r FILENAME  **
 
+  1. Move the cursor to this line.
+
+  2. Press  v  and move the cursor to the fifth item below.  Notice that the
+     text is highlighted.
+
+  3. Press the  :  character.  At the bottom of the screen  :'<,'> will appear.
+
+  4. Type  w TEST  , where TEST is a filename that does not exist yet.  Verify
+     that you see  :'<,'>w TEST  before you press <ENTER>.
+
+  5. Vim will write the selected lines to the file TEST.  Use  :!dir  or  :!ls
+     to see it.  Do not remove it yet!  We will use it in the next lesson.
+
   1. Place the cursor just above this line.
 
 NOTE:  After executing Step 2 you will see text from Lesson 5.3.  Then move
@@ -722,10 +735,12 @@ NOTE:  You can also read the output of an external command.  For example,
   3. Now type some text and press <ESC> to exit Insert mode.
 
 ---> After typing  o  the cursor is placed on the open line in Insert mode.
+some text
 
   4. To open up a line ABOVE the cursor, simply type a capital	O , rather
      than a lowercase  o.  Try this on the line below.
 
+some text
 ---> Open up a line above this by typing O while the cursor is on this line.
 
 
@@ -748,7 +763,7 @@ NOTE:  You can also read the output of an external command.  For example,
 
   5. Use  e  to move to the next incomplete word and repeat steps 3 and 4.
   
----> This li will allow you to pract appendi text to a line.
+---> This line will allow you to practice appending text to a line.
 ---> This line will allow you to practice appending text to a line.
 
 NOTE:  a, i and A all go to the same Insert mode, the only difference is where
@@ -771,7 +786,7 @@ NOTE:  a, i and A all go to the same Insert mode, the only difference is where
 
   4. Repeat the steps to replace the remaining xxx.
 
----> Adding 123 to xxx gives you xxx.
+---> Adding 123 to 456 gives you 579.
 ---> Adding 123 to 456 gives you 579.
 
 NOTE:  Replace mode is like Insert mode, but every typed character deletes an
@@ -797,7 +812,7 @@ NOTE:  Replace mode is like Insert mode, but every typed character deletes an
      the next line with  j$  and put the text there with  p .
 
 --->  a) this is the first item.
-      b)
+      b) this is the second item.
 
   NOTE: you can also use  y  as an operator;  yw  yanks one word.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
