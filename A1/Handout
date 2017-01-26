@@ -1,0 +1,306 @@
+Unix Assignment
+---------------
+Questions will be denoted with a Q#. You will answer each question in a text file called assignment1.txt
+This file should be checked into your remote git repository when you are done under the A1 directory. 
+The TA will access it from there. After you have checked your final version of the assignment into 
+your remote repository also upload the file to BBLearn. You must do this for each assignment (i.e., 
+submit it via BBLearn and git). Some assignments will require solutions with multiple
+files. In this case, create a tar file and upload it to BBLearn in addition to checking your files 
+into your git repository.
+
+You will need to download the unix.tar file from BBLearn in order to do this assignment. 
+
+Once you get the file, untar it in your A1 directory in your git repository.
+
+
+Logging in, set up
+------------------
+If you do not yet have an account on the CS department machines, follow this link: 
+http://www.cs.drexel.edu/Account.php
+
+You can connect to, and do all of your work on, tux.cs.drexel.edu. Tux is actually a farm of 
+servers. You may either sit directly at one of our department machines, or use SSH to connect 
+remotely. If you have a Unix machine at home, you can do your work on that machine and push
+your changes to the git repository.
+
+
+bash startup files
+------------------
+Use man or info to read about bash, specifically, parsing the start-up files .bashrc and .bash_profile.
+
+Q1: Describe when the shell invokes .bashrc, and when it invokes .bash_profile.
+
+
+List out the contents of your home directory. If you're new, you may copy .bashrc that I've made for 
+you, I think it's a decent place to start. Before you do, make back-ups of your existing startup 
+files (if any).
+
+Note: As a sanity check, when changing your startup files, the best way to test is simply to invoke 
+another instance of the shell (a subshell), by typing bash. If things are seriously wrong you can 
+exit out of there, back to a shell that's in okay shape, and fix up the problem.
+
+
+Editors
+-------
+For a vi tutorial just type:
+	 vimtutor 
+Read the tutorial, then save it in file vi_assignment using the following command from within vi:
+
+:w vi_assignment (from command mode) 
+
+Q2: Complete all edits in this file, as directed by the file, save the file as vi_assignment, 
+and submit along with the rest of your assignment by checking it into your git repository.
+
+
+Permissions - chmod
+-------------------
+On the command line type the following command:
+	ls -al
+note the first column of each entry. E.g.:
+
+total 79
+drwxr-xr-x    2 spiros     None            0 Jan  8 05:17 .
+drwxr-xr-x    3 spiros     None            0 Jan  8 04:55 ..
+-rw-r--r--    1 spiros     None         8059 Jan  8 05:25 funny
+-rwxr-xr-x    1 spiros     None          198 Jan  8 05:17 hello.bash
+-rw-r--r--    1 spiros     None          319 Jan  8 06:26 index.html
+-rw-r--r--    1 spiros     None        28454 Jan  8 06:24 vi_lab
+
+There are 10 characters there. The first one is the file type (d for directory, - for a regular file).
+The next nine are permissions on the file (or directory). Consider them as three groups of three:
+The first group are your permissions, the 2nd group are your group's permissions, and the final 3 
+are the permissions for the whole world.
+
+Each group is of the form rwx. If the character is present, then the particular permission is granted.
+	r - read
+	w - write
+	x - execute
+These are fairly self-explanatory for files, but need some exploration for directories.
+       
+The chmod command allows you to set (change) the permissions on a file or directory.
+There are several forms, including the ability to express all permissions for a particular entity 
+(user, group, world) as a single octal integer:
+	4 - read
+	2 - write
+	1 - execute
+You can combine permissions by adding the values for the desired permissions. So, e.g.,
+        7 - all permissions
+        6 - r & w
+        5 - r & e
+        3 - w & e 
+When you specify permissions to chmod, you must specify the permissions for all 3 entities. 
+This is simply 3 octal integers, in order: user, group, world.  The form of the command is:
+	chmod perm file
+E.g.:
+	chmod 700 Personal – gives you all permissions on your Personal/ directory, and none to anybody else
+	chmod 755 Public – gives you all permissions on your Public/ directory, and read and execute access to everyone else
+	chmod 644 .plan – You have read & write on your .plan file, all others have only read
+	chmod 600 homework.java – you have read & write, and all others have no access
+
+In general, you NEVER want to give people write access to your directories. Some directories we leave open 
+for read and execute, like public_html, so people can get to your webpages, and so on.
+Copy funny and hello.bash into the course assignment directory
+
+Q3: Do an ls -l . What do you see?
+
+Q4: If you enter chmod 644 some_file, what permissions did you give to whom?
+
+Q5: If you enter chmod 755 some_file , what permissions did you give to whom?
+
+Type the following command
+	chmod 644 funny 
+
+Q6: Can you read your funny file?
+
+Type the following command: 
+	chmod 644 hello.bash
+
+Q7: Can you read your hello.bash file?
+
+Attempt to execute hello.bash: 
+
+	./hello.bash
+
+Q8: Were you successful?
+
+Q9: What are 2 ways of giving yourself execute permission on this file?
+
+Type the following command: 
+
+	chmod 400 funny
+
+Open the file in the vi editor, make a change. Save the file 
+
+Q10: What happened?
+
+
+Create Your Website
+-------------------
+Return to your home directory
+Create a directory called public_html
+Make that your current working directory
+Copy sample.html to your directory, renaming it to index.html
+Fill it in, then open up a browser. Make sure you can see the page. 
+	www.cs.drexel.edu/~userId/index.html .
+Also, copy and check your index.html file into the git repository.
+
+
+Shell wildcards and special symbols
+-----------------------------------
+The shell reserves certain characters. These include *, which matches any 
+number of characters, and ?, which matches exactly 1 character. A space 
+is used to separate tokens.
+
+Copy the following files from my directory: 
+	annoy 
+	annoy.cc 
+	itemList 
+        itemList-2cols 
+	TelecomTruths 
+	UnitTestingPhase
+Execute each of the following commands:
+        ls *
+        ls a*
+        ls *m*
+        ls anno?
+        ls annoy? 
+
+Q11: What is the output of each of these?
+
+Create a file with a space in the name: 
+	vi a space
+
+Q12: What happened?
+
+Quit out of both those files, without saving
+
+Try again: vi "a space". Type something in, save the file.
+
+Remove it: rm a\ space. 
+
+
+Quoting, Command Substitution
+-----------------------------
+If the shell sees back quotes it will execute the quoted command, 
+and replaced the quoted expression with the output (stdout) of the command.
+
+Q13: Record the output:
+	echo Is a < b?
+        echo "Is a < b?"
+        echo "\$USER is $USER"
+        echo '\$USER is $USER'
+        echo "Today is `date`"
+        echo "Today is $(date)"
+        echo 'Today is `date`'
+        echo -e "Files that start w/e:\n`ls e*`"
+
+
+Pipe, redirection
+-----------------
+You've already seen an example of a pipe. You can string as many as you want together:
+
+	ls -ao -1 | sort -nr -k4 | more
+	ls -a -1 | wc -l
+
+Output from a command can be sent (redirected) to a file, instead of the screen:
+
+	finger > people
+	less people
+
+Input to a command can be from a file:
+
+	mail -s "testing" ${USER}@drexel.edu < telecomTruths
+
+Now go check your mail.
+
+
+Files
+-----
+
+Q14: What is the difference between "sort itemList-2cols" and "sort -n itemList-2cols"?
+
+Q15: How would you list the 8 items in itemList-2cols with the highest numbers, in descending order?
+
+Enter the following command: 
+	du -sh *
+
+Now try 
+	du -s * | sort -nr | head -4
+
+Go to your home directory and try it, then come back here. 
+Now you can find where the bulk of your quota is hiding.
+
+
+Archiving
+---------
+Tar all the files in your directory: 
+	tar cvf assignment1.tar *
+
+Make sure you got it all: 
+	tar tf assignment1.tar
+
+Now zip that file up: 
+	gzip assignment1.tar
+
+Q16: The tar file is gone. What is in its place?
+
+Delete that file, we'll do it all at once:
+
+	tar cvf - * | gzip > assignment1.tgz 
+
+Okay, delete the tgz file.
+
+If you have a newer tar, you're on a linux box, we can be even slicker:
+
+	tar cvzf assignment1.tgz * 
+
+Make a copy of that file: 
+	cp assignment1.tgz assignment1.2.tgz
+
+Okay, now let's extract gzip and tar files:
+	gunzip assignment1.tgz 
+
+Q17: What happened to the *.tgz file?
+
+To untar a tar file:
+	mkdir play
+        mv assignment1.tar assignment1.2.tgz play
+        cd play
+        tar xvf assignment1.tar 
+
+To do that all at once:
+
+	gunzip -c assignment1.2.tgz | tar xvf - 
+
+Or, if you're on a Linux box:
+
+	tar xvzf assignment1.2.tgz 
+
+Clean up:
+	cd ..
+	\rm -rf Play 
+
+
+Looking Around
+--------------
+Q18: Show the grep command used to find if any files in this lab directory mention "Vacation".
+
+You've just logged in, without changing directories, issue a find command to search your 
+entire home directory for that file you were working on, assignment1.
+
+Q19: Enter the find command you used above here:
+
+
+Submission
+----------
+Follow the lecture slides on how to set up a remote git repository. In this course you will be 
+submitting your assignments by 1) uploading the files in one tar file to BBLearn, and 2) checking 
+your files into your remote repository. Create a subdirectory in your git repository called A1. 
+Then check in all of the files for this assignment into that directory. When it's time to do the 
+next assignment for the course create a subdirectory called A2, and so on for every assignment 
+in the course. Don’t forget to upload your files as a single tar file to BBLearn for every 
+assignment, in addition to depositing your files into git.
+
+assignment1.txt - your answer file
+vi_lab.txt - VIM tutorial
+
