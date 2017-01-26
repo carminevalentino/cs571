@@ -1,1 +1,2 @@
-test
+Q1. .bash_profile is executed for login shells (such as SSH) whereas .bashrc is read when executed from an interactive shell (but not necesarily on startup, though you could setup your .bash_profile to read in your .bashrc if you wanted).
+
