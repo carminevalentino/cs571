@@ -1,0 +1,96 @@
+Makefiles Assignment
+--------------------
+You're going to create a fairly simple makefile that performs some basic, common tasks. 
+Compile a C program. Run a C program. Run a Python program. Compile and run a Java program. 
+Compare 2 files. Clean up intermediary files.
+
+Go through the steps below, adding 1 target at a time (and testing!) to your makefile.
+
+Create a directory for this assignment in your git repository. Then copy the following 
+files from the file make.tar
+
+    README
+    expected.out
+    foo.c
+    foo.h
+    foo.java
+    foo.py
+    main.c
+
+You will create a makefile called Makefile, and fill that in as follows:
+
+First, at the top of the makefile, define the following variables:
+        cc = gcc
+        EXE = foo
+        JAVAC = javac
+        JRE = java
+        TEST_OUT = test.out
+        EXP_OUT = expected.out
+
+Create a target called foo.o . It will depend on the files foo.c and foo.h. 
+And will execute the following code if the target is out of date:
+
+        $(cc) -c foo.c
+
+Create a target called main.o . It will depend on the files main.c and foo.h. 
+And will execute the following code if the target is out of date:
+
+        $(cc) -c main.c
+
+Now we want to make the executable from those object files. Create a target 
+called $(EXE), which would depend on the files foo.o and main.o. 
+And will execute the following code if the target is out of date:
+
+        $(cc) -o $(EXE) main.o foo.o
+
+To test this file, you would type 
+	make foo 
+make $(EXE) wouldn't work.
+
+Now we want to run the program. Create a target called run-c, 
+which would depend on the file $(EXE) . Here is the command that would do it:
+
+        ./$(EXE)
+
+Now, add a target called run-py that simply runs the foo.py, in the current 
+directory. It would, of course, depend on foo.py 
+
+Create a target called foo.class 
+It will depend on the file foo.java and will execute the following code 
+if the target is out of date:
+
+        $(JAVAC) foo.java
+
+Create a target called run-java  
+It will depend on the file foo.class  
+And will execute the following code if the target is out of date:
+
+        $(JRE) foo
+
+Create a target called test-java 
+We want to compare your output with the expected output. 
+It'll depend on the 2 output files, $(TEST_OUT) and $(EXP_OUT) . 
+Here is the bash lines that would do it:
+
+        -@if diff $(TEST_OUT) $(EXP_OUT) &> /dev/null ; then \
+          echo "Passed!" ;\
+        else \
+          echo "Not the same!" ;\
+        fi
+
+You have to figure out how to modify the run-java command to 
+automatically capture the java program's (foo.java) 
+output and store it into  $(TEST_OUT). Without that, the if
+statement code above will not work because there is nothing
+in $(TEST_OUT).
+
+Create a target called clean 
+It cleans up all generated files (the object files, the class file, 
+the executable, and the test.out file).
+
+Finally, note that 
+	clean run-py run-c run-java and test-java 
+are all phony targets. Note this, near the top, under the variables.
+
+Submit this Makefile by checking it into your git repository and uploading it to BBLearn. 
+
